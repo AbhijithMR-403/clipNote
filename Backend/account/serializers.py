@@ -9,10 +9,12 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = Account.objects.create_user(
             username=validated_data['username'],
+            email=validated_data['email'],
             password=validated_data['password'],
         )
         return user
 
     class Meta:
         model = Account
-        fields = ("id", "username", "password")
+        fields = ("id", "username", "password", "email")
+
