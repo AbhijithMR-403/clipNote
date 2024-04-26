@@ -12,12 +12,13 @@ function Home() {
     const [editId, setEditId] = useState(null)
     
     useEffect(()=>{
+        if(Access){
         UserAxios.get(`/note/list/${jwtDecode(Access).user_id}`).then((res)=>{
             setNotesList(res.data)
             console.log(res.data);
         }).catch((err)=>{
             console.log(err);
-        })
+        })}
     },[editId, ModalCondition])
 
     return (
