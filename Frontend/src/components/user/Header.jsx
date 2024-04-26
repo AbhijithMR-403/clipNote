@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Header() {
     return (
@@ -7,7 +8,7 @@ function Header() {
                 <div className="bg-gray-100 border-b border-gray-200">
                     <div className="px-4 mx-auto sm:px-6 lg:px-8">
                         <nav className="relative flex items-center justify-between h-16 lg:h-20">
-                        {/* This div is use to align the sign in and register button to left */}
+                            {/* This div is use to align the sign in and register button to left */}
                             <div className="hidden lg:flex lg:items-center lg:space-x-10">
 
                             </div>
@@ -46,15 +47,17 @@ function Header() {
                                     />
                                 </svg>
                             </button>
-                            {/* <div className="hidden lg:flex lg:items-center lg:space-x-10">
-                                <a href="#" title="" className="text-base font-medium text-black">
-                                    Sign up{" "}
-                                </a>
-                                <a href="#" title="" className="text-base font-medium text-black">
+                            <div className="hidden lg:flex lg:items-center lg:space-x-10">
+                                <div onClick={() => {
+                                    localStorage.removeItem("access");
+                                }} className="cursor-pointerg text-base font-medium text-black">
+                                    Log out
+                                </div>
+                                {/* <a href="#" title="" className="text-base font-medium text-black">
                                     Sign in
-                                </a>
+                                </a> */}
 
-                            </div> */}
+                            </div>
                         </nav>
                     </div>
                 </div>

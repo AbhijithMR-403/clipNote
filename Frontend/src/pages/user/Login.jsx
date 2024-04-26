@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { UserAxios } from '../../components/axios-instance/instance';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
 
     const [Email, setEmail] = useState('')
     const [Password, setPassword] = useState('')
+    const navigate = useNavigate();
 
     const submitHandle = () => {
         console.log(Email, Password);
@@ -12,6 +14,7 @@ function Login() {
         UserAxios.post('/login',formData).then((res)=>{
             localStorage.setItem("access", res.data.access);
             localStorage.setItem("refresh", res.data.refresh);
+            navigate('/')
             console.log(res);
         }).catch((err)=>{
             console.log(err);
@@ -54,17 +57,9 @@ function Login() {
                         </button>
 
                         <div className="sm:flex sm:flex-wrap mt-8 sm:mb-4 text-sm text-center">
-                            <a href="#" className="flex-2 underline">
-                                Forgot password?
-                            </a>
-
-                            <p className="flex-1 text-gray-500 text-md mx-4 my-1 sm:my-auto">
-                                or
-                            </p>
-
-                            <a href="#" className="flex-2 underline">
+                            <Link to={'/register'} className="flex-2 underline">
                                 Create an Account
-                            </a>
+                            </Link>
                         </div>
                     </form>
                 </div>
