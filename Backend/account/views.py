@@ -8,10 +8,10 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from rest_framework.exceptions import AuthenticationFailed, ParseError
 from .serializers import UserSerializer
+from django.db.models import Q
 
 
 class CreateUserView(CreateAPIView):
-
     model = Account
     permission_classes = [
         permissions.AllowAny
@@ -25,7 +25,6 @@ class UserLogin(APIView):
         try:
             email = request.data['email']
             password = request.data['password']
-            print(email, '\n\n\n-', password)
         except KeyError:
             raise ParseError('All Fields Are Required')
         if not Account.objects.filter(email=email).exists():
@@ -49,3 +48,11 @@ class UserLogin(APIView):
         }
         print(content)
         return Response(content, status=status.HTTP_200_OK)
+
+
+class CheckUsernameEmail(APIView):
+    def get(self, request):
+        value = request.GET.get('value')
+        email = Account.objects.filter(email=value).exists()
+        username = Account.objects.filter(username=value).exists()
+        return Response({'email': email, 'username': username})

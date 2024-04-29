@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { UserAxios } from '../axios-instance/instance'
 import { jwtDecode } from 'jwt-decode'
+import { TWarning } from '../toastify/Toastify'
 
 function Modal({setModalCondition, setEditId, editId}) {
     const [Title, setTitle] = useState('')
@@ -19,7 +20,11 @@ function Modal({setModalCondition, setEditId, editId}) {
     },[])
 
     const handleSubmit = async () =>{
-        console.log(Title, Description);
+        if(Title.trim() == ''){
+            TWarning('Title is empty')
+        }else if(Description.trim() == ''){
+            TWarning('Description is empty')
+        }
         const formData = {
             title:Title,
             description:Description,

@@ -32,7 +32,7 @@ function Header() {
                                 type="button"
                                 className="inline-flex p-2 ml-5 text-black transition-all duration-200 rounded-md lg:hidden focus:bg-gray-100 hover:bg-gray-100"
                             >
-                                <svg
+                                {/* <svg
                                     className="w-6 h-6"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
@@ -45,12 +45,12 @@ function Header() {
                                         strokeWidth={2}
                                         d="M4 6h16M4 12h16m-7 6h7"
                                     />
-                                </svg>
+                                </svg> */}
                             </button>
-                            <div className="hidden lg:flex lg:items-center lg:space-x-10">
+                            <div className=" lg:flex lg:items-center lg:space-x-10">
                                 <div onClick={() => {
                                     localStorage.removeItem("access");
-                                }} className="cursor-pointerg text-base font-medium text-black">
+                                }} className="cursor-pointer text-base font-medium text-black">
                                     Log out
                                 </div>
                                 {/* <a href="#" title="" className="text-base font-medium text-black">
