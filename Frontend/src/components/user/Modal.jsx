@@ -46,7 +46,7 @@ function Modal({setModalCondition, setEditId, editId}) {
             title:Title,
             description:Description,
         }
-        await UserAxios.patch(`/note/edit/${editId}`, formData).then((res)=>{
+        await AuthUserAxios.patch(`/note/edit/${editId}`, formData).then((res)=>{
             console.log(res);
             console.log('Ok this is updated');
             setEditId(null)
