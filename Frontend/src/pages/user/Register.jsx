@@ -9,10 +9,18 @@ function Register() {
     const [usernameChecker, setUsernameChecker] = useState(false)
     let timeoutId;
 
-    const handleSubmit = (res) => {
+    const handleSubmit = async (res) => {
         res.preventDefault()
+        // console.log('this is shere');
+        // console.log(res.target.password.value);
+        // if (res.target.password.value.trim() == '')
+        // {
+        //     TWarning('Enter a valid password')
+        //     return
+        // }
+        // else{
         const formData = new FormData(res.target)
-        UserAxios.post('/register', formData).then((res) => {
+        await UserAxios.post('/register', formData).then((res) => {
             navigate('/login')
         }).catch((err) => {
             console.log(err);
@@ -22,10 +30,15 @@ function Register() {
                 }else
                 if (err.response.data.username) {
                     TWarning(err.response.data.username[0]);
+                }else if (err.response.data.username) {
+                    TWarning(err.response.data.username[0]);
+                }else if (err.response.data.password) {
+                    TWarning('Enter a valid password');
                 }
             }
             console.log(err);
         })
+    
     }
 
     const CheckEmail = (event) => {

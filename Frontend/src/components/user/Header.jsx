@@ -1,7 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Header() {
+    const navigate = useNavigate();
+
     return (
         <div>
             <header>
@@ -50,6 +52,7 @@ function Header() {
                             <div className=" lg:flex lg:items-center lg:space-x-10">
                                 <div onClick={() => {
                                     localStorage.removeItem("access");
+                                    navigate('/login')
                                 }} className="cursor-pointer text-base font-medium text-black">
                                     Log out
                                 </div>

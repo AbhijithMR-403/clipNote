@@ -36,7 +36,7 @@ class CustomUserManager(BaseUserManager):
 
 class Account(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=30, unique=True)
-    password = models.CharField(max_length=20)
+    password = models.CharField(max_length=120)
     email = models.EmailField(max_length=254, unique=True)
     date_joined = models.DateTimeField(auto_now_add=True, null=True)
     last_login = models.DateTimeField(auto_now_add=True, null=True)

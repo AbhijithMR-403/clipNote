@@ -13,7 +13,11 @@ function Home() {
     
     useEffect(()=>{
         if(Access){
-        UserAxios.get(`/note/list/${jwtDecode(Access).user_id}`).then((res)=>{
+        UserAxios.get(`/note/list/${jwtDecode(Access).user_id}`, {
+            headers:{
+                Authorization: `Bearer ${Access}`,
+            }
+        }).then((res)=>{
             setNotesList(res.data)
             console.log(res.data);
         }).catch((err)=>{
@@ -37,7 +41,7 @@ function Home() {
                         {notesList.map((res)=>{
                             return (
                                 <div key={res.id}>
-                            <Cards setEditId={setEditId} data={res}/>
+                            <Cards setEditId={setEditId} setNotesList={setNotesList} data={res}/>
                                 </div>
                         )
                         })}

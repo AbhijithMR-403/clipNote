@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from './pages/user/Login';
 import Register from './pages/user/Register';
+// import Home from './pages/user/Home';
 import UserRoute from './components/route/UserRoute';
 const Home = lazy(() => import('./pages/user/Home'));
 

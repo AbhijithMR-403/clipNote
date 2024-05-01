@@ -1,3 +1,4 @@
+from rest_framework import permissions
 from django.shortcuts import render
 from rest_framework import generics
 from note_mgmt.models import NoteHistory
@@ -6,11 +7,13 @@ from .serializers import CreateNoteSerializers, ListNoteSerializers
 
 
 class CreateNoteView(generics.CreateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = CreateNoteSerializers
     queryset = NoteHistory.objects.all()
 
 
-class ListNoteView(generics.ListAPIView):
+class ListNoteView(generics.ListAPIView):  
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = ListNoteSerializers
     queryset = NoteHistory.objects.all()
 
@@ -21,6 +24,14 @@ class ListNoteView(generics.ListAPIView):
 
 
 class RetrieveEditView(generics.RetrieveUpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ListNoteSerializers
+    queryset = NoteHistory.objects.all()
+    lookup_url_kwarg = 'pk'
+
+
+class DeleteNoteView(generics.DestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = ListNoteSerializers
     queryset = NoteHistory.objects.all()
     lookup_url_kwarg = 'pk'

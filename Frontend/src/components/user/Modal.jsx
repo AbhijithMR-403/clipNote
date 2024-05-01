@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { UserAxios } from '../axios-instance/instance'
+import { AuthUserAxios, UserAxios } from '../axios-instance/instance'
 import { jwtDecode } from 'jwt-decode'
 import { TWarning } from '../toastify/Toastify'
 
@@ -10,7 +10,7 @@ function Modal({setModalCondition, setEditId, editId}) {
 
     useEffect(()=>{
         if(editId)
-        UserAxios.get(`/note/edit/${editId}`).then((res)=>{
+        AuthUserAxios.get(`/note/edit/${editId}`).then((res)=>{
             console.log(res);
             setTitle(res.data.title)
             setDescription(res.data.description)
@@ -32,7 +32,7 @@ function Modal({setModalCondition, setEditId, editId}) {
         }
         console.log(formData);
         if(!editId){
-        await UserAxios.post('/note/create', formData).then((res)=>{
+        await AuthUserAxios.post('/note/create', formData).then((res)=>{
             console.log(res);
             setTitle('')
             setDescription('')
